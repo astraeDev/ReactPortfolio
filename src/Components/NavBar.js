@@ -5,9 +5,14 @@
 
 import {useState, useEffect} from 'react';
 import {Navbar, Nav, Container } from "react-bootstrap";
+import logo from "../Assets/img/logo.svg"; 
+import navIcon1 from "../Assets/img/nav-icon1.svg";
+import navIcon2 from "../Assets/img/nav-icon2.svg";
+import navIcon3 from "../Assets/img/nav-icon3.svg";
+
 
 export const NavBar = () => {
-    const [activeLink, setActiveLink] = useState('home'); // Create state - stter = fuction which keep info active link or not - initiate at "Home" because that's where are the links
+    const [activeLink, setActiveLink] = useState('home'); // Create state - starter = fuction which keep info active link or not - initiate at "Home" because that's where are the links
     const [scrolled, setScrolled] = useState(false); // Create state - keep info if user has scrolled - default parameters = false 
 
     useEffect(() => {  // determine if scrolled or not, trigger when scrolls starts
@@ -18,20 +23,22 @@ export const NavBar = () => {
                 setScrolled(false);
             }
         }
+
         window.addEventListener ("scrolled", onScroll); // 
+
         return () => window.removeEventListener ("scroll", onScroll); //remove on the DOM for no cascade we want this only one time
     }, [])
 
-    const onUpdateActiveLink = (value) => {
+    const onUpdateActiveLink = (value) => {    {/* déclare function taking in the value and setActiveLink with that value */}
         setActiveLink(value);
     }
 
 
     return (
-        <Navbar expand="lg" className={scrolled ? "scrolled" :""}> {/* classname base on condition state scrolled, if scrolled classname scrolled if not no classname*/}
+        <Navbar expand="md" className={scrolled ? "scrolled" :""}> {/* classname based on condition state scrolled, if scrolled classname scrolled if not no classname*/}
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap
-                    <img src = {''} alt = "logo" />
+                <Navbar.Brand href="#home">
+                    <img src={logo} alt="logo" />
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" >
@@ -46,9 +53,9 @@ export const NavBar = () => {
                     </Nav>
                     <span className="navbar-text">
                         <div className="social-icon">
-                            <a href="#"> <img src = {""} alt= ""> </img> </a>
-                            <a href="#"> <img src = {""} alt= ""> </img> </a>
-                            <a href="#"> <img src = {""} alt= ""> </img> </a>
+                            <a href="#"> <img src={navIcon1} alt= ""></img> </a>
+                            <a href="#"> <img src={navIcon2} alt= ""></img> </a>
+                            <a href="#"> <img src={navIcon3} alt= ""></img> </a>
                         </div>
                         <button className="vvd" onClick={() => console.log('connect')}> <span> Let's connect </span> </button>
                     </span>
